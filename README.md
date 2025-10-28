@@ -73,4 +73,4 @@
    - Revelação: O jogo não implementa a "revelação em cascata" (ou flood fill). Ou seja, se o usuário revelar uma célula com '0' bombas vizinhas, o jogo não revela automaticamente as células adjacentes. O usuário deve revelar cada célula manualmente.
    - Condição de Vitória: A vitória não é alcançada ao revelar todas as células seguras (como em muitas versões do Campo Minado). A vitória neste sistema é estritamente baseada em marcar com bandeiras (M) todas as células de bomba (B) e nenhuma célula segura.
 
-<h3> Projeto desenvolvido por Bernardo Lebron – Estudante de Engenharia de Computação (CEFET-MG) </h3> 
+<h4> Projeto desenvolvido por Bernardo Lebron – Estudante de Engenharia de Computação (CEFET-MG) </h4> 
