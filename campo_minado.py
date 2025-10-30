@@ -10,8 +10,8 @@ def criar_campo(linha, coluna):
 def preenche_campo(mapa):
     """Preenche as bordas do mapa com '-' e '|'. e o interior com '*'."""
 
-    linha = len(mapa) 
-    coluna = len(mapa[0]) 
+    linha = len(mapa) #Calcula quantas linhas tem a matriz
+    coluna = len(mapa[0]) #Calcula quantas colunas tem a matriz
 
     for i in range(linha):
         for j in range(coluna):
@@ -27,13 +27,13 @@ def preenche_campo(mapa):
 def alocar_bombas(mapa, qtd_bombas):
     """Aloca as bombas no mapa."""
 
-    linha = len(mapa)
-    coluna = len(mapa[0])
-    bombas_colocadas = 0
+    linha = len(mapa) #Calcula quantas linhas tem a matriz
+    coluna = len(mapa[0]) #Calcula quantas colunas tem a matriz
+    bombas_colocadas = 0 #Contador de bombas
 
     while bombas_colocadas < qtd_bombas: #Loop até que todas as bombas sejam alocadas
-        x = random.randint(1, linha - 2)
-        y = random.randint(1, coluna - 2)
+        x = random.randint(1, linha - 2) #Sorteia um número aleatório entre 1 e linha - 2 para ser a coordenada da bomba
+        y = random.randint(1, coluna - 2) #Sorteia um número aleatorio entre 1 e coluna -2 para ser a coordenada da bomba
 
         if mapa[x][y] != 'B': #Verifica se já existe uma bomba na posição
             mapa[x][y] = 'B'  #Se não houver uma bomba ele aloca uma bomba na posição
@@ -41,23 +41,38 @@ def alocar_bombas(mapa, qtd_bombas):
 
 
 def printar_campo(mapa):
-    """Mostra o mapa na tela."""
+    """Mostra o mapa na tela com índices de linha e coluna."""
 
-    for i in range(len(mapa)):
-        for j in range(len(mapa[0])): #Prita o mapa a cada nova jogada
-            print(mapa[i][j], end=" ")
-        print()
+    linha = len(mapa)
+    coluna = len(mapa[0])
+
+    print("   ", end="")
+    for j in range(coluna): #Imprime os índices da coluna
+        print(j, end=" ")
+    print() 
+
+    for i in range(linha): #For que percorre linha por linha
+        print(i, end=" ")
+        if i < 10:
+            print(" ", end="") #Alinha com o índice das colunas
+        for j in range(coluna): 
+            print(mapa[i][j], end=" ") #Imprime cada elemento
+        print() 
 
 
 def contar_bombas_vizinhas(mapa, x, y):
     """Conta quantas bombas existem nas 8 posições vizinhas de (x, y)."""
 
+    linha = len(mapa)
+    coluna = len(mapa[0])
     bombas = 0
 
-    for i in range(x - 1, x + 2):
-        for j in range(y - 1, y + 2):
-            if mapa[i][j] == 'B': #Conta as bombas vizinhas e retorna o valor delas
-                bombas += 1
+
+    for i in range(x - 1, x + 2): #Percorre a linha acima a linha atual e a linha abaixo de x
+        for j in range(y - 1, y + 2): #Percorre a coluna a esquerda a atual e a direita de y
+            if 0 <= i < linha and 0 <= j < coluna:
+                if mapa[i][j] == 'B': #Conta as bombas vizinhas e retorna o valor delas
+                    bombas += 1
 
     return bombas
 
@@ -73,7 +88,7 @@ def revelar_posicao(mapa_real, mapa_visivel, x, y):
         return True  #Indicando que acertou uma bomba
 
     bombas_vizinhas = contar_bombas_vizinhas(mapa_real, x, y)
-    mapa_visivel[x][y] = str(bombas_vizinhas)
+    mapa_visivel[x][y] = str(bombas_vizinhas) #Atualiza a posição no mapa_visivel com o nuumero de bombas vizinhas
     return False
 
 
