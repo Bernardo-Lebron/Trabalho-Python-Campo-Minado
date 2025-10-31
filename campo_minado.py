@@ -88,7 +88,7 @@ def revelar_posicao(mapa_real, mapa_visivel, x, y):
         return True  #Indicando que acertou uma bomba
 
     bombas_vizinhas = contar_bombas_vizinhas(mapa_real, x, y)
-    mapa_visivel[x][y] = str(bombas_vizinhas) #Atualiza a posição no mapa_visivel com o nuumero de bombas vizinhas
+    mapa_visivel[x][y] = str(bombas_vizinhas) #Atualiza a posição no mapa_visivel com o numero de bombas vizinhas
     return False
 
 
